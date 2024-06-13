@@ -15,3 +15,8 @@ jobs:
        run: |
          echo "You create your first workflow"
          echo "Congratulations!!"
+     - name: "Script Python"
+       run: |
+          variable = "Hello World"
+          print(variable)
+       shell: python
