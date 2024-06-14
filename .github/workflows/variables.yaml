@@ -13,7 +13,7 @@ jobs:
           - name: Set Environment Variables
             env: 
               ENV_STEP: "Enviroment Step" # Step Environment Variable
-            run: echo "ENV_VAR=Hello World" >> $GITHUB_ENV
+            run: echo ENV_STEP: $ENV_STEP
           - name: Use Environment Variables
             run: |
               echo "ENV_WORKFLOW: $ENV_WORKFLOW"
