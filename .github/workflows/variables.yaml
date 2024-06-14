@@ -1,0 +1,24 @@
+name: Use Enviroment Variables
+on: 
+  workflow_dispatch
+env: 
+  ENV_WORKFLOW: "Enviroment Workflow" # Global Environment Variable
+jobs:
+     env: 
+        name: Set Environment Variables
+        runs-on: ubuntu-latest
+        env: 
+          ENV_JOB: "Enviroment Job" # Job Environment Variable
+        steps:
+          - name: Set Environment Variables
+            env: 
+              ENV_STEP: "Enviroment Step" # Step Environment Variable
+            run: echo "ENV_VAR=Hello World" >> $GITHUB_ENV
+          - name: Use Environment Variables
+            run: |
+              echo "ENV_WORKFLOW: $ENV_WORKFLOW"
+              echo "ENV_JOB: $ENV_JOB"
+              echo "ENV_STEP: $ENV_STEP"
+          - name: Second Step
+            run: |
+             echo "ENV_WORKFLOW: $ENV_WORKFLOW"
