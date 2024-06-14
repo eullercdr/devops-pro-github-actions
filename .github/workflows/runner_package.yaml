@@ -1,0 +1,15 @@
+name: Customize Runner
+
+on:
+  workflow_dispatch:
+jobs:
+      install:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Install FMPEG
+            run: |
+              sudo apt-get update
+              sudo apt-get install ffmpeg
+              ffmpeg -version
+          - name: Verift FFmpeg
+            run: ffmpeg -version
