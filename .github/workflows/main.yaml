@@ -33,3 +33,5 @@ jobs:
           node-version: "20.13.1"
       - name: "Verify NodeJs New Version"
         run: node -v
+      - name: "Execute FFMS"
+        run: ffmpeg -version
