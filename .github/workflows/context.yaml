@@ -1,7 +1,6 @@
 name: Como usar variavel de ambiente e contexto do GitHub Actions
 on: 
-    push:
-        branches: [main]
+    workflow_dispatch
 env:
   ENV_WORKFLOW: "Valor WORKFLOW"
 jobs:
@@ -30,3 +29,5 @@ jobs:
         env:
           RUNNER_CONTEXT: ${{ toJson(runner) }}
         run: echo "$RUNNER_CONTEXT"
+      - name: Contexto Variaveis
+        run: echo "${{ vars.VARS_CONTEXT }}"
