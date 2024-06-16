@@ -16,7 +16,7 @@ jobs:
           echo "action_random=$ACTION_RANDOM" >> $GITHUB_OUTPUT
       - name: Show output
         run: |
-          echo ${{ steps.example-output.outputs.action_random }}
+          echo "${{ steps.example-output.outputs.action_random }}"
 
       - name: Generate Password
         uses: aammirmirza/RandomPasswordGenerator@v1.1
@@ -26,7 +26,7 @@ jobs:
 
       - name : Show Password
         run: |
-          echo ${{ steps.generatedpassword.outputs.password }}    
+          echo "${{ steps.generatedpassword.outputs.password }}"
 
   show-output:
     runs-on: ubuntu-latest
