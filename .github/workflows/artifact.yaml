@@ -1,0 +1,48 @@
+name: Example Artifact Workflow
+run-name: Example Artifact Workflow Run
+on: 
+  workflow_dispatch:
+env: 
+  name-artifact: example-artifact
+jobs:
+  upload-artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - name: List files in the repository
+        run: ls -R
+      - name: Generate a files
+        run: |
+          mkdir -p artifact-example
+          echo "Primeiro de Teste" > ./example-artifact/file1.txt
+          echo "Segundo de Teste" > ./example-artifact/file2.txt
+          echo "Terceiro de Teste" > ./example-artifact/file3.txt
+          echo "Quarto de Teste" > ./example-artifact/file4.txt
+
+      - name: Upload a file
+        uses: actions/upload-artifact@v4
+        id: upload-artifact
+        with:
+          name:  ${{ env.name-artifact }}
+          path: ./example-artifact
+          retention-days: 2
+
+      - name: List files in the artifact
+        run: ls
+      
+      - name: Address to download the artifact
+        run: |
+          echo "${{ steps.upload-artifact.outputs.artifact_url }}"
+
+  download-artifact:
+    runs-on: ubuntu-latest
+    needs: upload-artifact
+    steps:
+      - name: Download the artifact
+        uses: actions/download-artifact@v4
+        with:
+          name:  ${{ env.name-artifact }}
+          
+      - name: List files in the artifact
+        run: ls
+        
+        
