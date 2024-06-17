@@ -1,0 +1,19 @@
+name: Matriz de Execução
+on:
+  workflow_dispatch:
+jobs:
+  example-workflow-strategy:
+    strategy:
+      matrix:
+        version: [16, 18, 20]
+        platform: ["windows", "ubuntu"]
+    runs-on: ${{ matrix.platform }}-latest
+    steps:
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.version }}
+      - name: Show Node.js version
+        run: |
+          node --version
+          echo ${{ runner.os}}
