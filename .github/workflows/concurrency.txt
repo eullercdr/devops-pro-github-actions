@@ -1,0 +1,13 @@
+name: Workflow concurrency
+run-name: Concorrencia ${{ github.run_number}}
+on: 
+  workflow_dispatch: 
+concurrency: pipeline-aula
+jobs: 
+  example-job: 
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Print message
+        run: |
+          sleep 120;
+          echo "Hello, world!"
